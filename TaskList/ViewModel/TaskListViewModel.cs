@@ -12,6 +12,14 @@ namespace TaskList.ViewModel
     {
         private ObservableCollection<TaskViewModel> tasks;
 
+        public TaskListViewModel()
+        {
+
+            this.Tasks = new ObservableCollection<TaskViewModel>();
+            this.Tasks.Add(new TaskViewModel() { Name = "Task 1", Complete = false });
+            this.Tasks.Add(new TaskViewModel() { Name = "Task 2", Complete = false });
+        }
+        
         public ObservableCollection<TaskViewModel> Tasks
         {
             get { return tasks; }
