@@ -24,14 +24,13 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
-                            
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Name}"/>
-                        <CheckBox IsChecked="{Binding Checked}" Grid.Column="1"/>
+                        <CheckBox IsChecked="{Binding Complete}" Grid.Column="1"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -43,7 +42,7 @@
                 <ColumnDefinition Width="*" MinWidth="80"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Grid.Column="1" Content="Add Task" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}"/>
 
         </Grid>
