@@ -9,13 +9,8 @@ namespace TaskList.Command
     public class CreateTaskCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        //TaskListViewModel tasks = new TaskListViewModel();
         public bool CanExecute(object parameter)
         {
-            //if (tasks.LengthOfTaksList() > 5)
-            //{
-            //    return false;
-            //}
             return true;
         }
 

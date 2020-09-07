@@ -11,7 +11,7 @@ namespace TaskList.ViewModel
 {
     public class TaskListViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Task> tasks;
+        private ObservableCollection<Task> tasks;
 
         public TaskListViewModel()
         {
@@ -31,12 +31,12 @@ namespace TaskList.ViewModel
         }
         public string TaskName { get; set; }
 
-        public int LengthOfTaksList()
-        {
-            int length = Tasks.Count();
+        //public int LengthOfTaksList()
+        //{
+        //    int length = Tasks.Count();
 
-            return length;
-        }
+        //    return length;
+        //}
         
         public ICommand CreateTaskCommand { get { return new CreateTaskCommand(); } }
 
