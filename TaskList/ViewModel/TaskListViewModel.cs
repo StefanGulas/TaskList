@@ -30,6 +30,8 @@ namespace TaskList.ViewModel
 
         }
         public string TaskName { get; set; }
+        public bool TaskIsChecked { get; set; }
+        public string TaskPriority { get; set; }
 
         //public int LengthOfTaksList()
         //{

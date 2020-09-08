@@ -18,7 +18,7 @@ namespace TaskList.Command
         {
             if (parameter is TaskListViewModel taskList)
             {
-                taskList.Tasks.Add(new Task() { Name = taskList.TaskName, Complete = false });
+                taskList.Tasks.Add(new Task() { Name = taskList.TaskName, Priority = taskList.TaskPriority, Complete = taskList.TaskIsChecked });
             }
         }
     }

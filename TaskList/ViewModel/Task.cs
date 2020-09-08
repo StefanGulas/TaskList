@@ -8,5 +8,6 @@ namespace TaskList.ViewModel
     {
         public string Name { get; set; }
         public bool Complete { get; set; }
+        public string Priority { get; set; }
     }
 }

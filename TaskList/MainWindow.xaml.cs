@@ -26,7 +26,7 @@ namespace TaskList
         {
             InitializeComponent();
             TaskListViewModel tasks = new TaskListViewModel();
-            this.DataContext = tasks;
+            DataContext = tasks;
         }
     }
 }
