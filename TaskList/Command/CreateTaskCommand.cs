@@ -16,10 +16,13 @@ namespace TaskList.Command
 
         public void Execute(object parameter)
         {
-            if (parameter is TaskListViewModel taskList)
+            if (parameter is TaskListViewModel taskList && taskList.TaskName != null)
             {
                 taskList.Tasks.Add(new Task() { Name = taskList.TaskName, Priority = taskList.TaskPriority, Complete = taskList.TaskIsChecked });
+                taskList.TaskName = "";
             }
+
+
         }
     }
 }

@@ -15,10 +15,10 @@ namespace TaskList.ViewModel
 
         public TaskListViewModel()
         {
-
+     
             Tasks = new ObservableCollection<Task>();
-            Tasks.Add(new Task() { Name = "Task 1", Complete = true });
-            Tasks.Add(new Task() { Name = "Task 2", Complete = false });
+            Tasks.Add(new Task() { Name = "Task 1", Priority = "8", Complete = true });
+            Tasks.Add(new Task() { Name = "Task 2", Complete = false, Priority = "4" });
         }
         
         public ObservableCollection<Task> Tasks
@@ -29,9 +29,19 @@ namespace TaskList.ViewModel
             }
 
         }
-        public string TaskName { get; set; }
+        private string taskName;
+        public string TaskName
+        {
+            get { return taskName; }
+            set
+            {
+                taskName = value;
+                NotifyPropertyChanged(nameof(TaskName));
+            }
+        }
         public bool TaskIsChecked { get; set; }
         public string TaskPriority { get; set; }
+        public bool ClearTask { get; set; }
 
         //public int LengthOfTaksList()
         //{
@@ -41,6 +51,8 @@ namespace TaskList.ViewModel
         //}
         
         public ICommand CreateTaskCommand { get { return new CreateTaskCommand(); } }
+        
+        public ICommand ClearTaskCommand { get { return new ClearTaskCommand(); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
