@@ -26,6 +26,7 @@ namespace TaskList.Command
                 }
                 for (int i = 0; i < taskList.Tasks.Count; i++)
                 {
+                    if (taskList.TaskName == null) taskList.TaskName = "";
                     if (taskList.Tasks[i].Name == taskList.TaskName)
                     {
                         taskList.Tasks.RemoveAt(i);

@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" HorizontalAlignment="Center" VerticalAlignment="Center">
+ <!-- ToDo list Row-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -29,41 +31,56 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding Name}"/>
                         <TextBlock Grid.Column="1" Text="{Binding Priority}"/>
                         <CheckBox IsChecked="{Binding Complete}" Grid.Column="2"/>
-                        <CheckBox IsChecked="{Binding ClearTask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2"/>
+                        <CheckBox IsChecked="{Binding ClearTaskCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3"/>
 
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        
+
+ <!-- Label Row-->
         <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="ToDo"/>
+            <Label Grid.Column="1" Content="Priority"/>
+            <Label Grid.Column="2" Content="Finished"/>
+        </Grid>
+ <!-- Text Input Row-->
+        <Grid Grid.Row="3" Margin="30,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="20"/>
                 
-                <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Column="0" Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Grid.Column="1" Text="{Binding TaskPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <CheckBox Grid.Column="2" IsChecked="{Binding TaskIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Grid.Column="3" Content="Add Task" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" IsDefault="True"/>
-
+            <CheckBox Grid.Column="2" IsChecked="{Binding Path=TaskIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+ <!-- Button Row-->
         </Grid>
-        <Grid Grid.Row="3" Margin="5">
-            <Grid.ColumnDefinitions>
+        <Grid Grid.Row="4" Margin="10" >
+            <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="80"/>
                 
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Grid.Column="1" Content="Clear tasks" Command="{Binding ClearTaskCommand}" CommandParameter="{Binding}" IsDefault="True"/>
+
+            <Button Grid.Column="1" Content="Add Task" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" IsDefault="True"/>
+
+            <Button Grid.Column="2" Content="Clear tasks" Command="{Binding ClearTaskCommand}" CommandParameter="{Binding}" IsDefault="True"/>
         </Grid>
     </Grid>
 </Window>
