@@ -4,10 +4,18 @@ using System.Text;
 
 namespace TaskList.ViewModel
 {
+        public enum Priority
+        {
+            low,
+            medium,
+            high
+        }
+
     public class Task
     {
         public string Name { get; set; }
         public bool Complete { get; set; }
-        public string Priority { get; set; }
+        public Priority Priority { get; set; }
+
     }
 }

@@ -12,13 +12,14 @@ namespace TaskList.ViewModel
     public class TaskListViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Task> tasks;
+        private string taskName;
 
         public TaskListViewModel()
         {
      
             Tasks = new ObservableCollection<Task>();
-            Tasks.Add(new Task() { Name = "Task 1", Priority = "8", Complete = true });
-            Tasks.Add(new Task() { Name = "Task 2", Complete = false, Priority = "4" });
+            Tasks.Add(new Task() { Name = "Task 1", Priority = 0, Complete = true });
+            Tasks.Add(new Task() { Name = "Task 2", Complete = false, Priority =  0 });
         }
         
         public ObservableCollection<Task> Tasks
@@ -29,7 +30,6 @@ namespace TaskList.ViewModel
             }
 
         }
-        private string taskName;
         public string TaskName
         {
             get { return taskName; }
@@ -40,7 +40,10 @@ namespace TaskList.ViewModel
             }
         }
         public bool TaskIsChecked { get; set; }
-        public string TaskPriority { get; set; }
+        public Priority TaskPriority { get; set; }
+
+
+        //public string TaskPriority { get; set; }
         public bool ClearTask { get; set; }
 
         //public int LengthOfTaksList()
