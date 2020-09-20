@@ -3,10 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:TaskList"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" HorizontalAlignment="Center" VerticalAlignment="Center">
- <!-- ToDo list Row-->
+ <!--   <Window.Resources>
+        <ObjectDataProvider MethodName="GetValues"
+        ObjectType="{x:Type sys:Enum}"
+        x:Key="PriorityValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="TaskPriority" /> 
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources> -->
+
+    <!-- ToDo list Row-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -59,14 +70,16 @@
  <!-- Text Input Row-->
         <Grid Grid.Row="3" Margin="30,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="20"/>
                 
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Column="0" Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Grid.Column="1" Text="{Binding TaskPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Name="TaskPriorityComboBox" Grid.Column="1" SelectedValue="{Binding Priority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding TaskPriorities, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- ="{Binding {StaticResource Path=TaskPriority}}"/>-->
+            <!--           <TextBox Grid.Column="1" Text="{Binding TaskPriority, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
             <CheckBox Grid.Column="2" IsChecked="{Binding Path=TaskIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
  <!-- Button Row-->
         </Grid>

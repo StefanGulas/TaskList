@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskList.ViewModel;
 
+
+
 namespace TaskList
 {
     /// <summary>
@@ -22,11 +24,13 @@ namespace TaskList
     /// </summary>
     public partial class MainWindow : Window
     {
+        TaskListViewModel tasks = new TaskListViewModel();
         public MainWindow()
         {
             InitializeComponent();
-            TaskListViewModel tasks = new TaskListViewModel();
             DataContext = tasks;
+//            TaskPriorityComboBox.ItemsSource = Enum.GetValues(typeof(TaskPriorities)).Cast<TaskPriorities>();
+
         }
     }
 }

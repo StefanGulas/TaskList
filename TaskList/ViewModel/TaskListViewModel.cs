@@ -40,8 +40,36 @@ namespace TaskList.ViewModel
             }
         }
         public bool TaskIsChecked { get; set; }
-        public Priority TaskPriority { get; set; }
 
+        //private Priority taskPriority;
+        //public Priority TaskPriority 
+        //{ 
+        //    get { return taskPriority; }  
+        //    set { taskPriority = value;
+        //        NotifyPropertyChanged(nameof(TaskPriority));
+        //        }  
+        //}
+        public IList<Priority> TaskPriorities
+        {
+            get
+            {
+                // Will result in a list like {"Tester", "Engineer"}
+                return Enum.GetValues(typeof(Priority)).Cast<Priority>().ToList<Priority>();
+            }
+            set { }
+        }
+        private Priority priority;
+
+        public Priority Priority
+        {
+            get { return priority; }
+            set
+            {
+                priority = value;
+                NotifyPropertyChanged(nameof(Priority));
+            }
+
+        }
 
         //public string TaskPriority { get; set; }
         public bool ClearTask { get; set; }
