@@ -18,7 +18,9 @@ namespace TaskList.Command
         {
             if (parameter is TaskListViewModel taskList && taskList.TaskName != null && taskList.TaskName != "")
             {
-                taskList.Tasks.Add(new Task() { Name = taskList.TaskName, Priority = taskList.Priority, Complete = taskList.TaskIsChecked });
+               taskList.Tasks.Add(new Task() { Name = taskList.TaskName, Priority = taskList.Priority, Complete = taskList.TaskIsChecked });
+               // DataAccess dataAccess = new DataAccess();
+                 //   dataAccess.AddTask(new Task() { Name = taskList.TaskName, Priority = taskList.Priority, Complete = taskList.TaskIsChecked });
                 taskList.TaskName = "";
             }
 

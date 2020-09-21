@@ -17,10 +17,15 @@ namespace TaskList.ViewModel
 
         public TaskListViewModel()
         {
+            DataAccess db = new DataAccess();
+            Tasks = db.GetTasks();
 
-            Tasks = new ObservableCollection<Task>();
-            Tasks.Add(new Task() { Name = "Weekend Grocery", Priority = 0, Complete = false });
-            Tasks.Add(new Task() { Name = "Finish Monthly Bookkeeping", Complete = true, Priority = ViewModel.Priority.high });
+            //Tasks = new ObservableCollection<Task>();
+        
+
+            //    Tasks.Add(new Task() { Name = "Weekend Grocery", Priority = 0, Complete = false });
+        //    Tasks.Add(new Task() { Name = "Finish Monthly Bookkeeping", Complete = true, Priority = ViewModel.Priority.high });
+        
         }
 
         public ObservableCollection<Task> Tasks
