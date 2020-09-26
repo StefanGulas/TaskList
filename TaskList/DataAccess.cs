@@ -23,14 +23,17 @@ namespace TaskList
             return taskList;
         }
 
-        public void AddTask(Task newTask)
+        public void AddTask(string name, int priority, bool complete)
         {
             using var con = Helper.Conn();
 
             con.Open();
 
-            con.Execute("INSERT INTO dbo.[Tasks] VALUES newTask");
+            String dapperInsert = "INSERT INTO dbo.[Tasks] (Name, Priority, Complete) VALUES" +
+                "(@Name, @Priority, @Complete)";
+            var affectedRows = con.Execute(dapperInsert, new { Name = name, Priority = priority, Complete = complete });
 
         }
+
     }
 }

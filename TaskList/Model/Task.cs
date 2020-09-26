@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TaskList.ViewModel
+﻿namespace TaskList.ViewModel
 {
-        public enum Priority
+    public enum Priority
         {
-            low,
-            medium,
-            high
+            low = 0,
+            medium = 1,
+            high = 2
         }
 
     public class Task
