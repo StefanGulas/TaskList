@@ -31,9 +31,29 @@ namespace TaskList
 
             String dapperInsert = "INSERT INTO dbo.[Tasks] (Name, Priority, Complete) VALUES" +
                 "(@Name, @Priority, @Complete)";
+            
             var affectedRows = con.Execute(dapperInsert, new { Name = name, Priority = priority, Complete = complete });
 
         }
+        public void RemoveTask(string name)
+        {
+            using var con = Helper.Conn();
 
+            con.Open();
+
+            String dapperDelete = "DELETE FROM dbo.[Tasks] WHERE Name = @Name";
+
+            var affectedRows = con.Execute(dapperDelete, new { Name = name });
+        }
+        public void IsChecked(string name, bool complete)
+        {
+            using var con = Helper.Conn();
+
+            con.Open();
+
+            String dapperChecked = "UPDATE Tasks SET Complete = @Complete WHERE Name = @Name";
+
+            var affectedRows = con.Execute(dapperChecked, new { Complete = complete, Name = name });
+        }
     }
 }

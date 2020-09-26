@@ -30,6 +30,9 @@ namespace TaskList.Command
                     if (taskList.Tasks[i].Name == taskList.TaskName)
                     {
                         taskList.Tasks.RemoveAt(i);
+                        DataAccess db = new DataAccess();
+                        db.RemoveTask(taskList.TaskName);
+
                         taskList.TaskName = "";
                         break;
                     }

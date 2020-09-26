@@ -21,10 +21,7 @@ namespace TaskList.Command
                 taskList.Tasks.Add(new Task() { Name = taskList.TaskName, Priority = taskList.Priority, Complete = taskList.TaskIsChecked });
                 DataAccess db = new DataAccess();
                 db.AddTask(taskList.TaskName, (int)taskList.Priority, taskList.TaskIsChecked);
-                // DataAccess dataAccess = new DataAccess();
-                //db.AddTask(new Task() { Name = taskList.TaskName, Priority = taskList.Priority, Complete = taskList.TaskIsChecked });
                 taskList.TaskName = "";
-                //taskList.db.Add(new Task() { Name = taskList.TaskName, Priority = taskList.Priority, Complete = taskList.TaskIsChecked });
 
             }
         }

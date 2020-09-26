@@ -53,7 +53,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding Name}"/>
                             <TextBlock Grid.Column="1" Text="{Binding Priority}"/>
-                            <CheckBox IsChecked="{Binding Complete}" Grid.Column="2"/>
+                            <CheckBox IsChecked="{Binding Complete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2"/>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
