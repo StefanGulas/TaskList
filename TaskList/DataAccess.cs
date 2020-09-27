@@ -10,13 +10,25 @@ namespace TaskList
 {
     public class DataAccess
     {
-        public ObservableCollection<Task> GetTasks()
+        public ObservableCollection<Task> GetTasks(bool showAllTasks)
         {
             using var con = Helper.Conn();
 
             con.Open();
 
-            ObservableCollection<Task> taskList = new ObservableCollection<Task>(con.Query<Task>("SELECT * from Tasks").ToList());
+            string getTasks;
+
+            if (showAllTasks)
+            {
+                getTasks = "SELECT * FROM Tasks ORDER BY TaskId DESC";
+            }
+            else if (!showAllTasks)
+            {
+                getTasks = "SELECT * from Tasks WHERE Complete = 'false' ORDER BY TaskId DESC";
+            }
+            else getTasks = "";
+
+            ObservableCollection<Task> taskList = new ObservableCollection<Task>(con.Query<Task>(getTasks).ToList());
 
             con.Close();
 
@@ -54,6 +66,18 @@ namespace TaskList
             String dapperChecked = "UPDATE Tasks SET Complete = @Complete WHERE Name = @Name";
 
             var affectedRows = con.Execute(dapperChecked, new { Complete = complete, Name = name });
+        }
+        public ObservableCollection<Task> ShowAll()
+        {
+            using var con = Helper.Conn();
+
+            con.Open();
+
+            string dapperShowAll = "SELECT * FROM Tasks ORDER BY TaskId DESC";
+            
+            ObservableCollection<Task> taskList = new ObservableCollection<Task>(con.Query<Task>(dapperShowAll).ToList());
+
+            return taskList;
         }
     }
 }

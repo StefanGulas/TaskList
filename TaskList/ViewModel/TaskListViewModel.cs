@@ -22,9 +22,25 @@ namespace TaskList.ViewModel
             
             DataAccess db = new DataAccess();
             
-            Tasks = db.GetTasks();
+            Tasks = db.GetTasks(false);
 
         }
+
+        private bool showAllTasks;
+
+        public bool ShowAllTasks
+        {
+            get { return showAllTasks; }
+            set 
+            { 
+                showAllTasks = value;
+                NotifyPropertyChanged(nameof(ShowAllTasks));
+                Tasks = new ObservableCollection<Task>();
+                DataAccess db = new DataAccess();
+                Tasks = db.GetTasks(showAllTasks);
+            }
+        }
+
 
         public ObservableCollection<Task> Tasks
         {
