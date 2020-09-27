@@ -20,7 +20,7 @@ namespace TaskList
 
             if (showAllTasks)
             {
-                getTasks = "SELECT * FROM Tasks ORDER BY TaskId DESC";
+                getTasks = "SELECT * FROM Tasks ORDER BY Complete, TaskId DESC";
             }
             else if (!showAllTasks)
             {

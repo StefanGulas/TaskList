@@ -71,7 +71,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label FontStyle="Italic" Grid.Column="3" Foreground="GhostWhite" Content="Show all tasks"/>
-             <CheckBox Margin="3,7" IsChecked="{Binding ShowAllTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4"/>
+             <CheckBox Margin="1,7" IsChecked="{Binding ShowAllTasks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4"/>
             
         </Grid>
         <!-- Label Row-->
