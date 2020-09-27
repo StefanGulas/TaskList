@@ -75,7 +75,7 @@ namespace TaskList.ViewModel
                 priority = value;
                 NotifyPropertyChanged(nameof(Priority));
             }
-
+             
         }
 
         public ICommand CreateTaskCommand { get { return new CreateTaskCommand(); } }
@@ -84,7 +84,7 @@ namespace TaskList.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged(String name)
+        private void NotifyPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
