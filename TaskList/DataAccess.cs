@@ -24,6 +24,7 @@ namespace TaskList
             }
             else if (!showAllTasks)
             {
+                //private object @taskId = TaskId;
                 getTasks = "SELECT * from Tasks WHERE Complete = 'false' ORDER BY TaskId DESC";
             }
             else getTasks = "";
@@ -46,6 +47,8 @@ namespace TaskList
             
             var affectedRows = con.Execute(dapperInsert, new { Name = name, Priority = priority, Complete = complete });
 
+            con.Close();
+
         }
         public void RemoveTask(string name)
         {
@@ -56,16 +59,26 @@ namespace TaskList
             String dapperDelete = "DELETE FROM dbo.[Tasks] WHERE Name = @Name";
 
             var affectedRows = con.Execute(dapperDelete, new { Name = name });
+
+            con.Close();
         }
+
         public void IsChecked(string name, bool complete)
         {
             using var con = Helper.Conn();
 
             con.Open();
 
-            String dapperChecked = "UPDATE Tasks SET Complete = @Complete WHERE Name = @Name";
+            string @Name = name;
+            bool @Complete = complete;
+
+            string dapperChecked = "UPDATE Tasks SET Complete = @Complete WHERE Name = @Name";
 
             var affectedRows = con.Execute(dapperChecked, new { Complete = complete, Name = name });
+
+            con.Close();
+
+            //ObservableCollection<Task> taskList = new ObservableCollection<Task>(con.Execute(getTasks).ToList());
         }
         public ObservableCollection<Task> ShowAll()
         {
@@ -76,6 +89,9 @@ namespace TaskList
             string dapperShowAll = "SELECT * FROM Tasks ORDER BY TaskId DESC";
             
             ObservableCollection<Task> taskList = new ObservableCollection<Task>(con.Query<Task>(dapperShowAll).ToList());
+
+            
+           con.Close();
 
             return taskList;
         }
