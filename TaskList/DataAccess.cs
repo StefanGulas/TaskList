@@ -10,6 +10,8 @@ namespace TaskList
 {
     public class DataAccess
     {
+        private int taskId;
+
         public ObservableCollection<Task> GetTasks(bool showAllTasks)
         {
             using var con = Helper.Conn();
@@ -34,6 +36,29 @@ namespace TaskList
             con.Close();
 
             return taskList;
+        }
+
+        internal int GetId(string name, bool complete)
+        {
+            using var con = Helper.Conn();
+
+            con.Open();
+
+            var getId = "SELECT TOP 1 TaskId from Tasks WHERE Name = @Name AND Complete = @Complete";
+
+            ObservableCollection<Task> taskList = new ObservableCollection<Task>(con.Query<Task>(getId).ToList());
+
+            //private int taskId;
+
+            foreach (var item in taskList)
+            {
+                taskId = item.TaskId;
+            }
+            
+            return taskId;
+
+
+
         }
 
         public void AddTask(string name, int priority, bool complete)
@@ -63,16 +88,17 @@ namespace TaskList
             con.Close();
         }
 
-        public void IsChecked(string name, bool complete)
+        public void IsChecked(string name, bool complete, int taskId)
         {
             using var con = Helper.Conn();
 
             con.Open();
 
-            string @Name = name;
-            bool @Complete = complete;
+            //string @Name = name;
+            //bool @Complete = complete;
+            //int @TaskId = taskId;
 
-            string dapperChecked = "UPDATE Tasks SET Complete = @Complete WHERE Name = @Name";
+            string dapperChecked = "UPDATE Tasks SET Complete = @Complete WHERE Name = @Name AND TaskId = @TaskId";
 
             var affectedRows = con.Execute(dapperChecked, new { Complete = complete, Name = name });
 

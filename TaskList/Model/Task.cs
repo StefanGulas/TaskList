@@ -21,7 +21,14 @@ namespace TaskList.ViewModel
         public string Name { get; set; }
         private bool complete;
 
-        public int TaskId { get; set; }
+        public int TaskId 
+        {
+            get
+            {
+                DataAccess db = new DataAccess();
+                return db.GetId(Name, Complete);
+            }
+        }
         public bool Complete
         {
             get { return complete; }
@@ -30,7 +37,7 @@ namespace TaskList.ViewModel
                 complete = value;
                 NotifyPropertyChanged(nameof(Name));
                 DataAccess db = new DataAccess();
-                db.IsChecked(Name, complete);
+                db.IsChecked(Name, complete, TaskId);
             }
         }
 

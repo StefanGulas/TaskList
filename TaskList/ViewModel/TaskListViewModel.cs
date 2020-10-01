@@ -16,6 +16,8 @@ namespace TaskList.ViewModel
         private bool taskIsChecked;
         private Priority priority;
 
+        public int TaskId { get; set; }
+
         public TaskListViewModel()
         {
             Tasks = new ObservableCollection<Task>();
@@ -70,7 +72,7 @@ namespace TaskList.ViewModel
                 taskIsChecked = value;
                 NotifyPropertyChanged(nameof(TaskName));
                 DataAccess db = new DataAccess();
-                db.IsChecked(taskName, TaskIsChecked);
+                db.IsChecked(taskName, TaskIsChecked, TaskId);
             }  
         }
 
