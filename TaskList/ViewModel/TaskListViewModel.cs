@@ -68,7 +68,7 @@ namespace TaskList.ViewModel
             set
             {
                 taskIsChecked = value;
-                NotifyPropertyChanged(nameof(TaskName));
+                NotifyPropertyChanged(nameof(TaskIsChecked));
                 DataAccess db = new DataAccess();
                 db.IsChecked(taskName, TaskIsChecked);
             }  
