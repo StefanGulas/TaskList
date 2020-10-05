@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TaskList.ViewModel;
 using Dapper;
 using System.Linq;

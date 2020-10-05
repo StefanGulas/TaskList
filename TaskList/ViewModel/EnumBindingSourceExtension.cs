@@ -13,7 +13,7 @@ namespace TaskList.ViewModel
         {
             if (enumType is null || !enumType.IsEnum)
             {
-                throw new Exception("EnumType must not be null and of type Enum");
+                throw new Exception("EnumType must not be null and must be of type Enum");
             }
             EnumType = enumType;
         }
